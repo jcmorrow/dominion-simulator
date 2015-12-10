@@ -1,3 +1,5 @@
+require_relative 'card'
+
 class Treasure < Card
   attr_reader :value
 

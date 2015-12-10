@@ -13,5 +13,18 @@ class Deck
     end
   end
 
+  def output
+    @cards.each do |card|
+      puts card.name
+    end
+  end
+
+  def shuffle!
+    @cards.shuffle!
+  end
+
+  def draw(n_of_cards=5)
+    return @cards.shift(n_of_cards)
+  end
 
 end
