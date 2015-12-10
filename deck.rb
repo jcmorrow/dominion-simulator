@@ -4,7 +4,7 @@ require_relative 'estate'
 class Deck
 
   def initialize(options = {})
-    @cards = []
+    @cards = options[:cards] || []
     7.times do
       @cards.push(Copper.new)
     end
@@ -25,6 +25,22 @@ class Deck
 
   def draw(n_of_cards=5)
     return @cards.shift(n_of_cards)
+  end
+
+  def unshift(n)
+    @cards.unshift()
+  end
+
+  def shift(n)
+    @cards.shift(n)
+  end
+
+  def size
+    @cards.size
+  end
+
+  def add_to_bottom(cards)
+    @cards.push(cards).flatten!
   end
 
 end
