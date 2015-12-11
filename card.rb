@@ -3,11 +3,11 @@ class Card
 
   def initialize(options = {})
     @type = options[:type]
-    @cost = options[:cost]
+    @cost = options[:cost] || 0
     @name = options[:name]
   end
 
-  def play
+  def play(player)
   end
 
 end

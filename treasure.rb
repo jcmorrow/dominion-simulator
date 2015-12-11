@@ -8,4 +8,8 @@ class Treasure < Card
     super(options)
   end
 
+  def play(player)
+    player.treasure = player.treasure + @value
+  end
+
 end

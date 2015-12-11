@@ -43,4 +43,13 @@ class Deck
     @cards.push(cards).flatten!
   end
 
+  def score
+    puts @cards.map { |card| card.name.upcase } .join(" ")
+
+    score_count = @cards.select { |c| c.name == 'Estate' } .count
+    score_count += (@cards.select { |c| c.name == 'Dutchy' } .count * 3)
+    score_count += (@cards.select { |c| c.name == 'Province' } .count * 6)
+    return score_count
+  end
+
 end
