@@ -43,9 +43,19 @@ class Deck
     @cards.push(cards).flatten!
   end
 
+  def includes(card_type)
+    return !(@cards.select { |c| c.name == card_type } .empty?)
+  end
+
+  def count(card_type)
+    return @cards.select { |c| c.name == card_type } .count
+  end
+
   def score
     puts @cards.map { |card| card.name.upcase } .join(" ")
 
+    puts "Estate: #{@cards.select { |c| c.name == 'Estate' } .count}"
+    puts "Province: #{@cards.select { |c| c.name == 'Province' } .count}"
     score_count = @cards.select { |c| c.name == 'Estate' } .count
     score_count += (@cards.select { |c| c.name == 'Dutchy' } .count * 3)
     score_count += (@cards.select { |c| c.name == 'Province' } .count * 6)

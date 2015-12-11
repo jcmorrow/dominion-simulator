@@ -4,13 +4,16 @@ class BigMoneyPlayer < Player
 
   def buy_something
     case
-    when @treasure == 3
+    when @treasure == 3 && !(@deck.includes("Silver"))
+      puts "I will buy a Silver"
+      buy(Silver)
+    when @treasure == 3 && @deck.includes("Silver")
       puts "I will buy a village"
       buy(Village)
-    when @treasure == 4 || @treasure ==  5
+    when (@treasure == 4 || @treasure ==  5) && (@deck.count("Smithy") <= @deck.count("Village"))
       puts "I will buy a smithy"
       buy(Smithy)
-    when @treasure == 6
+    when @treasure == 6 || @treasure == 7
       puts "I will buy a gold"
       buy(Gold)
     when @treasure >= 8

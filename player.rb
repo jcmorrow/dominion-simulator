@@ -3,7 +3,7 @@ require_relative 'deck'
 require_relative 'hand'
 
 class Player
-  attr_accessor :treasure
+  attr_accessor :treasure, :deck
 
   def initialize
     @discard_pile = []
