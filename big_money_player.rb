@@ -10,7 +10,8 @@ class BigMoneyPlayer < Player
     when @treasure == 3 && @deck.includes("Silver")
       puts "I will buy a village"
       buy(Village)
-    when (@treasure == 4 || @treasure ==  5) && (@deck.count("Smithy") <= @deck.count("Village"))
+    when (@treasure == 4 || @treasure ==  5) && 
+         (@deck.count("Smithy") <= @deck.count("Village"))
       puts "I will buy a smithy"
       buy(Smithy)
     when @treasure == 6 || @treasure == 7

@@ -12,10 +12,7 @@ class Player
   end
 
   def take_turn
-    @buys = 1
-    @actions = 1
-    @treasure = 0
-    @hand = Hand.new(@deck)
+    reset_turn
     play_cards
     @treasure = @hand.treasure
     puts "I can buy something worth #{@treasure}"
@@ -23,12 +20,39 @@ class Player
     discard_hand
   end
 
+  def gain_actions(n)
+    @actions = @actions + n
+  end
+
+  def draw_cards(n)
+    @hand.add @deck.draw(n)
+  end
+
+  #could this be non-mutating?
+  def score!
+    @deck.add_to_bottom(@discard_pile)
+    return @deck.score
+  end
+
+  def score
+    Deck.score(@deck + @discard_pile + @hand)
+  end
+
+  private
+
+  def reset_turn
+    @buys = 1
+    @actions = 1
+    @treasure = 0
+    @hand = Hand.new(@deck)
+  end
+
   def buy_something
-    
+    raise RunTimeError, "buy_something is not defined for #{self.class}"
   end
 
   def play_cards
-
+    raise RunTimeError, "play_cards is not defined for #{self.class}"
   end
 
   def buy(card_type)
@@ -45,19 +69,4 @@ class Player
       puts "DECK SHUFFLED"
     end
   end
-
-  def gain_actions(n)
-    @actions = @actions + n
-  end
-
-  def draw_cards(n)
-    @hand.add @deck.draw(n)
-  end
-
-  def score!
-    @deck.add_to_bottom(@discard_pile.shuffle)
-    return @deck.score
-  end
-
-
 end

@@ -52,14 +52,13 @@ class Deck
   end
 
   def score
-    puts @cards.map { |card| card.name.upcase } .join(" ")
+    self.class.score(@cards)
+  end
 
-    puts "Estate: #{@cards.select { |c| c.name == 'Estate' } .count}"
-    puts "Province: #{@cards.select { |c| c.name == 'Province' } .count}"
-    score_count = @cards.select { |c| c.name == 'Estate' } .count
-    score_count += (@cards.select { |c| c.name == 'Dutchy' } .count * 3)
-    score_count += (@cards.select { |c| c.name == 'Province' } .count * 6)
-    return score_count
+  def self.score(cards)
+    treasure_cards = cards.select(&:victory?)
+    score_count = treasure_cards.inject(0) { |sum, card| sum += card.points }
+    score_count
   end
 
 end

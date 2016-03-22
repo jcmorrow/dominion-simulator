@@ -12,4 +12,8 @@ class Treasure < Card
     player.treasure = player.treasure + @value
   end
 
+  def treasure?
+    true
+  end
+
 end

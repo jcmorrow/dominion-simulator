@@ -8,6 +8,15 @@ class Card
   end
 
   def play(player)
+    raise RunTimeError, "play is not defined for #{self.class}"
+  end
+
+  def treasure?
+    false
+  end
+
+  def victory?
+    false
   end
 
 end
